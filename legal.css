@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Telza: simple content pages (Privacy Policy, Terms & Conditions, Support)
+   One shared pattern: a minimal banner + a centred, readable content column.
+   Same tokens, fonts and dark background as the rest of the site (style.css).
+   No cards, illustrations or scroll animations by design.
+   ========================================================================== */
+
+.page-legal main { overflow-x: clip; background: #000; }
+
+/* Banner ---------------------------------------------------------------------- */
+.lg-banner {
+  position: relative;
+  padding: calc(var(--header-h) + 84px) 0 72px;
+  text-align: center;
+  background:
+    radial-gradient(55% 80% at 50% 0%, rgba(20, 201, 184, .2), transparent 70%),
+    radial-gradient(30% 50% at 85% 30%, rgba(57, 255, 20, .07), transparent 70%),
+    #000;
+  isolation: isolate;
+}
+/* faint grid that fades out, like the homepage CTA */
+.lg-banner::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(60% 90% at 50% 0%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(60% 90% at 50% 0%, #000 20%, transparent 75%);
+}
+.lg-banner::after { content: ""; position: absolute; left: 50%; bottom: 0; width: min(720px, 80%); height: 1px; translate: -50% 0; background: linear-gradient(90deg, transparent, rgba(20, 201, 184, .6), rgba(57, 255, 20, .6), transparent); }
+.lg-kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); }
+.lg-kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); }
+.lg-banner h1 { margin: 16px 0 0; font-family: var(--font-head); font-size: clamp(36px, 5vw, 64px); font-weight: 600; line-height: 1.06; letter-spacing: -.04em; color: var(--white); }
+.lg-banner__sub { max-width: 620px; margin: 18px auto 0; font-size: clamp(16px, 1.3vw, 18.5px); line-height: 1.6; color: var(--muted); }
+.lg-banner__meta { margin-top: 18px; font-size: 13.5px; color: var(--dim); }
+
+/* Content --------------------------------------------------------------------- */
+.lg-body { padding: 64px 0 110px; }
+.lg-prose { max-width: 760px; margin: 0 auto; font-size: 16.5px; line-height: 1.75; color: rgba(255, 255, 255, .74); }
+.lg-prose h2 { margin: 52px 0 14px; font-family: var(--font-head); font-size: clamp(22px, 2.2vw, 28px); font-weight: 600; line-height: 1.25; letter-spacing: -.02em; color: var(--white); scroll-margin-top: calc(var(--header-h) + 24px); }
+.lg-prose h2:first-child { margin-top: 0; }
+.lg-prose h3 { margin: 28px 0 8px; font-size: 17.5px; font-weight: 600; color: var(--white); }
+.lg-prose p { margin: 0 0 16px; }
+.lg-prose ul { margin: 0 0 18px; padding: 0; list-style: none; }
+.lg-prose li { position: relative; margin: 0 0 10px; padding-left: 22px; }
+.lg-prose li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+.lg-prose strong { color: var(--white); font-weight: 600; }
+.lg-prose a:not(.btn) { color: var(--teal); text-decoration: underline; text-decoration-color: rgba(20, 201, 184, .4); text-underline-offset: 3px; transition: color .25s, text-decoration-color .25s; }
+.lg-prose a:not(.btn):hover { color: var(--green); text-decoration-color: var(--green); }
+.lg-prose a:not(.btn):focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 3px; }
+.lg-prose hr { height: 1px; margin: 48px 0; border: 0; background: var(--border-strong); }
+.lg-note { margin-top: 48px; padding: 18px 20px; border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; background: rgba(255, 255, 255, .03); font-size: 15px; color: var(--muted); }
+
+/* Support: the button row and the email block (plain, no cards) */
+.lg-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 8px; }
+.lg-actions .btn .icon { width: 17px; height: 17px; }
+.lg-email { margin-top: 18px; padding-top: 20px; border-top: 1px solid var(--border-strong); }
+.lg-email__label { display: block; font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.lg-email__addr { display: inline-block; margin-top: 6px; font-family: var(--font-head); font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; letter-spacing: -.02em; color: var(--white); }
+
+@media (max-width: 760px) {
+  .lg-banner { padding: calc(var(--header-h) + 52px) 0 52px; }
+  .lg-body { padding: 44px 0 80px; }
+  .lg-prose { font-size: 16px; }
+  .lg-prose h2 { margin-top: 40px; }
+  .lg-actions .btn { flex: 1 1 220px; justify-content: center; }
+}
