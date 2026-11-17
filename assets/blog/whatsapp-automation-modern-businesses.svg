@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062824"/><stop offset=".55" stop-color="#020c0b"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.2" r=".55"><stop offset="0" stop-color="#14C9B8" stop-opacity=".38"/><stop offset="1" stop-color="#14C9B8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2" cx=".12" cy=".9" r=".45"><stop offset="0" stop-color="#39FF14" stop-opacity=".16"/><stop offset="1" stop-color="#39FF14" stop-opacity="0"/></radialGradient>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14C9B8"/><stop offset="1" stop-color="#39FF14"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12302c"/><stop offset="1" stop-color="#071513"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#fff" fill-opacity=".07"/></pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity=".6"/></filter>
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#dots)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <rect width="1200" height="750" fill="url(#glow2)"/>
+  <rect x="430" y="70" width="340" height="620" rx="48" fill="#06110f" stroke="#fff" stroke-opacity=".16" filter="url(#sh)"/>
+  <rect x="545" y="88" width="110" height="24" rx="12" fill="#000"/>
+  <rect x="446" y="126" width="308" height="64" rx="16" fill="#fff" fill-opacity=".05"/>
+  <circle cx="482" cy="158" r="20" fill="url(#grad)"/>
+  <g transform="translate(470 146) scale(1)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></g>
+  <text x="512" y="153" font-size="17" font-weight="600" fill="#fff">Telza Assistant</text>
+  <text x="512" y="175" font-size="14" fill="#39FF14">online</text>
+  <rect x="560" y="214" width="180" height="46" rx="16" fill="#fff" fill-opacity=".09"/>
+  <text x="576" y="246" font-size="16.5" fill="#fff" fill-opacity=".92">Is my order ready?</text>
+  <rect x="458" y="278" width="260" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="474" y="310" font-size="16.5" fill="#fff" fill-opacity=".92">Yes! It ships today and</text>
+  <text x="474" y="336" font-size="16.5" fill="#fff" fill-opacity=".92">arrives on Thursday.</text>
+  <rect x="458" y="368" width="260" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="474" y="400" font-size="16.5" fill="#fff" fill-opacity=".92">Want delivery updates</text>
+  <text x="474" y="426" font-size="16.5" fill="#fff" fill-opacity=".92">here on WhatsApp?</text>
+  <rect x="458" y="456" width="124" height="40" rx="20" fill="none" stroke="#39FF14" stroke-opacity=".7"/><text x="520" y="482" text-anchor="middle" font-size="16" font-weight="600" fill="#39FF14">Yes please</text>
+  <rect x="594" y="456" width="124" height="40" rx="20" fill="none" stroke="#fff" stroke-opacity=".3"/><text x="656" y="482" text-anchor="middle" font-size="16" font-weight="600" fill="#fff" fill-opacity=".8">Not now</text>
+  <rect x="600" y="516" width="140" height="46" rx="16" fill="#fff" fill-opacity=".09"/>
+  <text x="616" y="548" font-size="16.5" fill="#fff" fill-opacity=".92">Yes please ✓✓</text>
+  <rect x="446" y="610" width="308" height="50" rx="25" fill="#fff" fill-opacity=".06"/><text x="470" y="641" font-size="15" fill="#fff" fill-opacity=".4">Message</text>
+  <rect x="110" y="190" width="270" height="120" rx="22" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="160" cy="250" r="26" fill="url(#grad)"/>
+  <g transform="translate(147.4 237.4) scale(1.05)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></g>
+  <text x="200" y="244" font-size="18" font-weight="600" fill="#fff">Order confirmed</text>
+  <text x="200" y="270" font-size="15" fill="#fff" fill-opacity=".55">Sent automatically</text>
+  <rect x="820" y="390" width="280" height="120" rx="22" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="870" cy="450" r="26" fill="url(#grad)"/>
+  <g transform="translate(857.4 437.4) scale(1.05)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></g>
+  <text x="910" y="444" font-size="18" font-weight="600" fill="#fff">Booking reminder</text>
+  <text x="910" y="470" font-size="15" fill="#fff" fill-opacity=".55">Customer replied</text>
+
+</svg>

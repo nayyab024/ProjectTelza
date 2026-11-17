@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062824"/><stop offset=".55" stop-color="#020c0b"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.25" r=".55"><stop offset="0" stop-color="#14C9B8" stop-opacity=".38"/><stop offset="1" stop-color="#14C9B8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2" cx=".12" cy=".9" r=".45"><stop offset="0" stop-color="#39FF14" stop-opacity=".16"/><stop offset="1" stop-color="#39FF14" stop-opacity="0"/></radialGradient>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14C9B8"/><stop offset="1" stop-color="#39FF14"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12302c"/><stop offset="1" stop-color="#071513"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#fff" fill-opacity=".07"/></pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity=".6"/></filter>
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#dots)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <rect width="1200" height="750" fill="url(#glow2)"/>
+  <rect x="430" y="80" width="340" height="600" rx="48" fill="#06110f" stroke="#fff" stroke-opacity=".16" filter="url(#sh)"/>
+  <rect x="545" y="98" width="110" height="24" rx="12" fill="#000"/>
+  <rect x="446" y="136" width="308" height="64" rx="16" fill="#fff" fill-opacity=".05"/>
+  <circle cx="482" cy="168" r="20" fill="url(#grad)"/>
+  <g transform="translate(470 156) scale(1)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></g>
+  <text x="512" y="163" font-size="17" font-weight="600" fill="#fff">Dental practice</text>
+  <text x="512" y="185" font-size="14" fill="#39FF14">AI assistant · online</text>
+  <rect x="446" y="214" width="290" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="462" y="246" font-size="16.5" fill="#fff" fill-opacity=".92">Hi! Just a reminder of your</text>
+  <text x="462" y="272" font-size="16.5" fill="#fff" fill-opacity=".92">check-up tomorrow at 10:30.</text>
+  <rect x="446" y="300" width="138" height="40" rx="20" fill="none" stroke="#39FF14" stroke-opacity=".7"/><text x="515" y="326" text-anchor="middle" font-size="16" font-weight="600" fill="#39FF14">Confirm</text>
+  <rect x="596" y="300" width="138" height="40" rx="20" fill="none" stroke="#fff" stroke-opacity=".3"/><text x="665" y="326" text-anchor="middle" font-size="16" font-weight="600" fill="#fff" fill-opacity=".8">Reschedule</text>
+  <rect x="586" y="360" width="150" height="46" rx="16" fill="#fff" fill-opacity=".09"/>
+  <text x="602" y="392" font-size="16.5" fill="#fff" fill-opacity=".92">Reschedule</text>
+  <rect x="446" y="424" width="290" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="462" y="456" font-size="16.5" fill="#fff" fill-opacity=".92">No problem. Thursday at 9:00</text>
+  <text x="462" y="482" font-size="16.5" fill="#fff" fill-opacity=".92">or Friday at 14:00?</text>
+  <rect x="616" y="514" width="120" height="46" rx="16" fill="#fff" fill-opacity=".09"/>
+  <text x="632" y="546" font-size="16.5" fill="#fff" fill-opacity=".92">Friday âœ“âœ“</text>
+  <rect x="90" y="200" width="300" height="110" rx="22" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="140" cy="255" r="26" fill="url(#grad)"/>
+  <g transform="translate(127.4 242.4) scale(1.05)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></g>
+  <text x="180" y="250" font-size="18" font-weight="600" fill="#fff">Call answered</text>
+  <text x="180" y="276" font-size="15" fill="#fff" fill-opacity=".55">Evening booking request</text>
+  <rect x="810" y="420" width="300" height="110" rx="22" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="860" cy="475" r="26" fill="url(#grad)"/>
+  <g transform="translate(847.4 462.4) scale(1.05)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM16 2v4M8 2v4M3 10h18"/></g>
+  <text x="900" y="470" font-size="18" font-weight="600" fill="#fff">Appointment moved</text>
+  <text x="900" y="496" font-size="15" fill="#fff" fill-opacity=".55">Friday Â· 14:00</text>
+
+</svg>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outbound Calling — AI Voice Agent for Outbound Campaigns | Telza AI</title>
+  <meta name="description" content="Telza Outbound Calling: AI voice agents that call your leads and customers, follow your campaign logic, qualify leads, confirm appointments, send reminders and log every outcome to your CRM.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="assets/telza-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="outbound.css">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <script src="script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="outbound.js" defer></script>
+</head>
+<body class="page-outbound">
+
+  <!-- ============ Icon sprite ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+    <symbol id="i-phone-in" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M16 2v6h6M22 2l-6 6"/></symbol>
+    <symbol id="i-phone-out" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M16 2h6v6M16 8l6-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0V8zM12 18v4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V10z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-7 10 7z"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 20V6M2 14h20v6M22 14v-3a3 3 0 0 0-3-3h-8v6"/><circle cx="6.5" cy="10.5" r="1.5"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2l10 5-10 5L2 7l10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM20 17v4H6.5a2.5 2.5 0 0 1 0-5"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></symbol>
+    <symbol id="i-voicemail" viewBox="0 0 24 24"><circle cx="5.5" cy="11.5" r="4.5"/><circle cx="18.5" cy="11.5" r="4.5"/><path d="M5.5 16h13"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <!-- ============ Header (shared with homepage) ============ -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__crop"><img src="assets/telza-logo.png" alt="Telza AI home" width="362" height="207"></span>
+      </a>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link is-current" type="button" aria-expanded="false" aria-controls="dd-solutions">Products <svg class="icon icon--sm nav__chev"><use href="#i-chevron"/></svg></button>
+            <div class="dropdown dropdown--wide" id="dd-solutions">
+              <a class="dropdown__item" href="ai-voice-agent.html"><span class="dropdown__icon"><svg class="icon"><use href="#i-mic"/></svg></span><span><strong>AI Voice Agents</strong><small>Human-like agents for every call</small></span></a>
+              <a class="dropdown__item" href="inbound-calling.html"><span class="dropdown__icon"><svg class="icon"><use href="#i-phone-in"/></svg></span><span><strong>Inbound Calling</strong><small>Answer every call on the first ring</small></span></a>
+              <a class="dropdown__item" href="index.html#outbound"><span class="dropdown__icon"><svg class="icon"><use href="#i-phone-out"/></svg></span><span><strong>Outbound Calling</strong><small>Campaigns that scale on demand</small></span></a>
+              <a class="dropdown__item" href="index.html#whatsapp"><span class="dropdown__icon"><svg class="icon"><use href="#i-chat"/></svg></span><span><strong>WhatsApp Automation</strong><small>Chat, book and sell on WhatsApp</small></span></a>
+              <a class="dropdown__item dropdown__item--product" href="fillo.html"><span class="dropdown__icon"><svg class="icon"><use href="#i-layers"/></svg></span><span><strong>Fillo</strong><small>Explore our Fillo product</small></span></a>
+              <div class="dropdown__footer"><a href="index.html#solutions">View all solutions <svg class="icon icon--sm"><use href="#i-arrow"/></svg></a></div>
+            </div>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="index.html#features">Features</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="dd-industries">Industries <svg class="icon icon--sm nav__chev"><use href="#i-chevron"/></svg></button>
+            <div class="dropdown" id="dd-industries">
+              <a class="dropdown__item" href="index.html#industries"><span class="dropdown__icon"><svg class="icon"><use href="#i-heart"/></svg></span><span><strong>Healthcare</strong></span></a>
+              <a class="dropdown__item" href="index.html#industries"><span class="dropdown__icon"><svg class="icon"><use href="#i-home"/></svg></span><span><strong>Real Estate</strong></span></a>
+              <a class="dropdown__item" href="index.html#industries"><span class="dropdown__icon"><svg class="icon"><use href="#i-cart"/></svg></span><span><strong>E-commerce</strong></span></a>
+              <a class="dropdown__item" href="index.html#industries"><span class="dropdown__icon"><svg class="icon"><use href="#i-bank"/></svg></span><span><strong>Finance</strong></span></a>
+              <a class="dropdown__item" href="index.html#industries"><span class="dropdown__icon"><svg class="icon"><use href="#i-bed"/></svg></span><span><strong>Hospitality</strong></span></a>
+              <a class="dropdown__item" href="index.html#industries"><span class="dropdown__icon"><svg class="icon"><use href="#i-truck"/></svg></span><span><strong>Logistics</strong></span></a>
+            </div>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="index.html#how-it-works">How it works</a></li>
+          <li class="nav__item"><a class="nav__link" href="index.html#integrations">Integrations</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <button class="nav__link" type="button" aria-expanded="false" aria-controls="dd-resources">Resources <svg class="icon icon--sm nav__chev"><use href="#i-chevron"/></svg></button>
+            <div class="dropdown" id="dd-resources">
+              <a class="dropdown__item" href="index.html#testimonials"><span class="dropdown__icon"><svg class="icon"><use href="#i-star"/></svg></span><span><strong>Customer stories</strong><small>How teams use Telza</small></span></a>
+              <a class="dropdown__item" href="#faq"><span class="dropdown__icon"><svg class="icon"><use href="#i-book"/></svg></span><span><strong>FAQ</strong><small>Answers to common questions</small></span></a>
+              <a class="dropdown__item" href="#cta"><span class="dropdown__icon"><svg class="icon"><use href="#i-calendar"/></svg></span><span><strong>Book a demo</strong><small>Talk to our team</small></span></a>
+            </div>
+          </li>
+        </ul>
+        <div class="nav__mobile-cta">
+          <a href="#cta" class="btn btn--primary">Book a demo <svg class="icon"><use href="#i-arrow"/></svg></a>
+        </div>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#cta" class="btn btn--primary btn--sm">Book a demo</a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Content: Telza's own outbound descriptions (homepage Outbound section, product card and FAQ, AI Voice Agent page).
+         reves.ai/services/outbound was used for topic research only. Campaign figures in visuals are illustrative.
+         Motion: outbound.js (GSAP + ScrollTrigger on mouse/trackpad screens, lighter on touch). -->
+
+    <!-- ============ Hero ============ -->
+    <section class="ob-hero" id="hero" aria-labelledby="ob-hero-title">
+      <div class="ob-hero__bg" aria-hidden="true"><span class="ob-hero__glow"></span><span class="ob-hero__grid"></span><span class="ob-hero__word">OUTBOUND</span></div>
+      <div class="container ob-hero__inner">
+        <div class="ob-hero__copy">
+          <span class="ob-live"><i></i>Outbound Calling · AI voice agents</span>
+          <h1 class="ob-hero__title" id="ob-hero-title">
+            <span class="ob-line"><span class="ob-line__in">Your call list,</span></span>
+            <span class="ob-line"><span class="ob-line__in">called by AI that</span></span>
+            <span class="ob-line"><span class="ob-line__in ob-hero__accent">sounds like you.</span></span>
+          </h1>
+          <p class="ob-hero__lead">Telza's outbound voice agents call your leads and customers in natural, human-like conversations. They follow your campaign logic, qualify leads, confirm appointments and follow up, then log every outcome to your CRM.</p>
+          <div class="ob-hero__cta">
+            <a href="#cta" class="ob-pill"><span class="ob-pill__disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span><span class="ob-pill__label">Launch a campaign</span></a>
+            <a href="#journey" class="ob-textlink"><svg class="icon"><use href="#i-play"/></svg>Follow an outbound call</a>
+          </div>
+          <ul class="ob-hero__trust">
+            <li><svg class="icon"><use href="#i-check"/></svg>Personalised from your CRM</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Calling windows respected</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Every outcome logged</li>
+          </ul>
+        </div>
+
+        <!-- Campaign console (illustrative campaign) -->
+        <div class="ob-hero__stage" aria-hidden="true">
+          <div class="ob-console" data-ob-console>
+            <div class="ob-console__head">
+              <span class="ob-console__mark"><svg class="icon"><use href="#i-phone-out"/></svg></span>
+              <div><b>New lead follow-up</b><small>Campaign · running</small></div>
+              <span class="ob-console__live"><i></i>Live</span>
+            </div>
+            <ul class="ob-lanes">
+              <li class="ob-lane" data-ob-lane="0"><span class="ob-av">SL</span><span class="ob-lane__who"><b>Sara L.</b><small>Requested a quote</small></span><span class="ob-lane__wave"><span class="ob-bars" data-ob-bars="14"></span></span><em class="ob-chip">Talking</em></li>
+              <li class="ob-lane" data-ob-lane="1"><span class="ob-av">OB</span><span class="ob-lane__who"><b>Omar B.</b><small>Downloaded the guide</small></span><span class="ob-lane__wave"><span class="ob-bars" data-ob-bars="14"></span></span><em class="ob-chip">Dialing</em></li>
+              <li class="ob-lane" data-ob-lane="2"><span class="ob-av">KT</span><span class="ob-lane__who"><b>Kim T.</b><small>Started a trial</small></span><span class="ob-lane__wave"><span class="ob-bars" data-ob-bars="14"></span></span><em class="ob-chip">Qualified</em></li>
+              <li class="ob-lane" data-ob-lane="3"><span class="ob-av">RP</span><span class="ob-lane__who"><b>Raj P.</b><small>Webinar sign-up</small></span><span class="ob-lane__wave"><span class="ob-bars" data-ob-bars="14"></span></span><em class="ob-chip">Voicemail · retry later</em></li>
+              <li class="ob-lane" data-ob-lane="4"><span class="ob-av">AM</span><span class="ob-lane__who"><b>Ana M.</b><small>Booked a consultation</small></span><span class="ob-lane__wave"><span class="ob-bars" data-ob-bars="14"></span></span><em class="ob-chip">Appointment confirmed</em></li>
+            </ul>
+            <div class="ob-console__foot">
+              <div class="ob-progress"><span>Contacts called</span><div class="ob-progress__bar"><i data-ob-progress></i></div></div>
+              <span class="ob-console__note">Illustrative campaign</span>
+            </div>
+          </div>
+          <span class="ob-tag ob-tag--1"><svg class="icon"><use href="#i-database"/></svg>Outcome written to CRM</span>
+          <span class="ob-tag ob-tag--2"><svg class="icon"><use href="#i-clock"/></svg>Inside calling window</span>
+          <span class="ob-tag ob-tag--3"><svg class="icon"><use href="#i-users"/></svg>Routed to your team</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Wave marquee (dark → light) ============ -->
+    <div class="ob-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 360" preserveAspectRatio="xMidYMid slice">
+        <path class="ob-wave__top" d="M0 0H1440V122C1180 40 820 30 520 92 300 138 140 214 0 300Z"/>
+        <path id="ob-wave-path" class="ob-wave__band" d="M-160 336C120 170 360 96 600 66 900 28 1180 58 1600 176"/>
+        <text class="ob-wave__text" dy="17"><textPath href="#ob-wave-path" startOffset="0" data-ob-wave>LEAD FOLLOW-UP · LEAD QUALIFICATION · APPOINTMENT REMINDERS · RENEWALS · PAYMENT REMINDERS · CUSTOMER FOLLOW-UP · LEAD FOLLOW-UP · LEAD QUALIFICATION · APPOINTMENT REMINDERS · RENEWALS · PAYMENT REMINDERS · CUSTOMER FOLLOW-UP ·</textPath></text>
+      </svg>
+    </div>
+
+    <!-- ============ Statement (light) ============ -->
+    <section class="ob-light ob-intro" aria-labelledby="ob-intro-title">
+      <div class="container">
+        <span class="ob-kicker">Telza Outbound Calling</span>
+        <h2 class="ob-statement" id="ob-intro-title">
+          <span class="ob-line"><span class="ob-line__in">Stop dialing.</span></span>
+          <span class="ob-line"><span class="ob-line__in">Start <mark class="ob-mark">conversations.</mark></span></span>
+        </h2>
+        <p class="ob-intro__lead">Hours of manual dialing, missed follow-ups and leads that go cold before anyone calls back. Telza takes the calling off your team's plate: it places personalised calls in parallel, talks with each person naturally and hands your team the conversations, and the outcomes, that matter.</p>
+        <ul class="ob-chips" aria-label="What the outbound agent does">
+          <li><svg class="icon"><use href="#i-phone-out"/></svg>Contacts prospects</li>
+          <li><svg class="icon"><use href="#i-sliders"/></svg>Follows campaign logic</li>
+          <li><svg class="icon"><use href="#i-target"/></svg>Qualifies leads</li>
+          <li><svg class="icon"><use href="#i-chat"/></svg>Handles common objections</li>
+          <li><svg class="icon"><use href="#i-users"/></svg>Routes conversations to your team</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ How an outbound call works (pinned on desktop) ============ -->
+    <section class="ob-journey" id="journey" aria-labelledby="ob-journey-title">
+      <div class="ob-journey__stage">
+        <div class="container ob-journey__grid">
+          <div class="ob-journey__copy">
+            <span class="ob-kicker">How outbound AI calling works</span>
+            <h2 class="ob-h2" id="ob-journey-title">Inside one outbound call</h2>
+            <ol class="ob-steps">
+              <li class="ob-step" data-ob-step><span class="ob-step__num">01</span><div><h3>The campaign starts</h3><p>Your contact list, goals and script load, and calls only go out inside the calling windows you set.</p></div></li>
+              <li class="ob-step" data-ob-step><span class="ob-step__num">02</span><div><h3>Telza dials</h3><p>The call goes out. If voicemail answers, Telza leaves a tailored message and schedules a retry.</p></div></li>
+              <li class="ob-step" data-ob-step><span class="ob-step__num">03</span><div><h3>A personal conversation</h3><p>The agent uses details from your CRM and follows your campaign logic, so the call sounds personal, not scripted.</p></div></li>
+              <li class="ob-step" data-ob-step><span class="ob-step__num">04</span><div><h3>Questions and objections</h3><p>Common objections are handled and the person is qualified against your criteria.</p></div></li>
+              <li class="ob-step" data-ob-step><span class="ob-step__num">05</span><div><h3>Outcome logged</h3><p>The appointment is confirmed or the conversation is routed to your team, and the outcome is written back to your CRM.</p></div></li>
+            </ol>
+          </div>
+
+          <div class="ob-call" aria-hidden="true">
+            <div class="ob-call__head">
+              <span class="ob-call__avatar"><svg class="icon"><use href="#i-phone-out"/></svg></span>
+              <div class="ob-call__who"><b>Jordan R.</b><small data-ob-status>Outcome logged to CRM</small></div>
+              <span class="ob-call__timer" data-ob-timer>01:12</span>
+            </div>
+            <div class="ob-call__wave"><span class="ob-bars ob-bars--live" data-ob-bars="46"></span></div>
+            <ul class="ob-call__log">
+              <li class="ob-msg ob-msg--ai" data-ob-msg="3">Hi Jordan, I'm calling from Northside Clinic to confirm your appointment on Thursday at 10 AM.</li>
+              <li class="ob-msg ob-msg--person" data-ob-msg="3">Oh, I can't make Thursday morning any more.</li>
+              <li class="ob-msg ob-msg--ai" data-ob-msg="4">No problem. I can offer Thursday at 3 PM or Friday at 11 AM. Which suits you better?</li>
+              <li class="ob-msg ob-msg--person" data-ob-msg="4">Friday at 11 works.</li>
+              <li class="ob-msg ob-msg--ai" data-ob-msg="5">Done. You're booked for Friday at 11 AM. Thanks, Jordan!</li>
+              <li class="ob-msg ob-msg--event" data-ob-msg="5"><svg class="icon"><use href="#i-database"/></svg>Appointment moved · outcome logged</li>
+            </ul>
+            <span class="ob-call__note">Illustrative call</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Features (light) ============ -->
+    <section class="ob-light ob-features" id="features" aria-labelledby="ob-features-title">
+      <div class="container">
+        <div class="ob-head ob-head--center">
+          <span class="ob-kicker">Key features</span>
+          <h2 class="ob-h2" id="ob-features-title">Built to run your outreach, call after call</h2>
+        </div>
+        <div class="ob-features__grid">
+          <article class="ob-feature">
+            <div class="ob-vis ob-vis--speed" aria-hidden="true"><span class="is-lead">New lead</span><span class="is-line"><i></i></span><span class="is-call"><svg class="icon"><use href="#i-phone-out"/></svg>Calling</span></div>
+            <h3>Speed-to-lead</h3><p>New leads get a call within seconds of coming in, while their interest is still fresh.</p>
+          </article>
+          <article class="ob-feature">
+            <div class="ob-vis ob-vis--parallel" aria-hidden="true"><span style="--d:0s"></span><span style="--d:.3s"></span><span style="--d:.6s"></span><span style="--d:.9s"></span><span style="--d:1.2s"></span></div>
+            <h3>Calls in parallel, at scale</h3><p>Run many calls at once for follow-ups, reminders and renewals, without adding people to the phones.</p>
+          </article>
+          <article class="ob-feature">
+            <div class="ob-vis ob-vis--crm" aria-hidden="true"><span>"Hi <b>{first name}</b>, about your <b>{plan}</b> renewal…"</span><span class="is-out">"Hi <b>Maya</b>, about your <b>Premium</b> renewal…"</span></div>
+            <h3>Personalised from your CRM</h3><p>Scripts pull in fields from your CRM, so every person hears a call that is about them.</p>
+          </article>
+          <article class="ob-feature">
+            <div class="ob-vis ob-vis--chat" aria-hidden="true"><span class="is-q">"I'm not sure it's the right time."</span><span class="is-a">"Understood. Would a call next week work better?"</span></div>
+            <h3>Handles common objections</h3><p>Your existing scripts are adapted for AI, so the agent responds to different answers and objections instead of reading line by line.</p>
+          </article>
+          <article class="ob-feature">
+            <div class="ob-vis ob-vis--retry" aria-hidden="true"><span class="is-vm"><svg class="icon"><use href="#i-voicemail"/></svg>Voicemail detected</span><span class="is-msg">Tailored message left</span><span class="is-retry"><svg class="icon"><use href="#i-clock"/></svg>Retry scheduled</span></div>
+            <h3>Voicemail detection and smart retries</h3><p>Telza recognises voicemail, leaves a tailored message and schedules a retry automatically.</p>
+          </article>
+          <article class="ob-feature">
+            <div class="ob-vis ob-vis--rules" aria-hidden="true"><span class="is-window"><i></i><b>Calling window</b></span><span class="is-rule">Opt-outs respected</span><span class="is-rule">Do-not-call lists respected</span></div>
+            <h3>Calling rules built in</h3><p>Campaigns respect calling windows, opt-outs and do-not-call lists, and your team stays in control of scripts and consent.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Use cases: campaign picker (dark) ============ -->
+    <section class="ob-uses" id="use-cases" aria-labelledby="ob-uses-title">
+      <div class="container">
+        <div class="ob-head">
+          <span class="ob-kicker">Use cases</span>
+          <h2 class="ob-h2" id="ob-uses-title">One agent, every kind of outbound call</h2>
+        </div>
+        <div class="ob-uses__box" data-ob-uses>
+          <div class="ob-uses__tabs" role="tablist" aria-label="Outbound calling use cases">
+            <button type="button" class="ob-utab" role="tab" id="ob-utab-1" aria-controls="ob-use-1" aria-selected="true" tabindex="0"><span class="ob-utab__ic"><svg class="icon"><use href="#i-bolt"/></svg></span><span>New lead follow-up</span></button>
+            <button type="button" class="ob-utab" role="tab" id="ob-utab-2" aria-controls="ob-use-2" aria-selected="false" tabindex="-1"><span class="ob-utab__ic"><svg class="icon"><use href="#i-target"/></svg></span><span>Lead qualification</span></button>
+            <button type="button" class="ob-utab" role="tab" id="ob-utab-3" aria-controls="ob-use-3" aria-selected="false" tabindex="-1"><span class="ob-utab__ic"><svg class="icon"><use href="#i-calendar"/></svg></span><span>Appointment reminders</span></button>
+            <button type="button" class="ob-utab" role="tab" id="ob-utab-4" aria-controls="ob-use-4" aria-selected="false" tabindex="-1"><span class="ob-utab__ic"><svg class="icon"><use href="#i-repeat"/></svg></span><span>Renewals</span></button>
+            <button type="button" class="ob-utab" role="tab" id="ob-utab-5" aria-controls="ob-use-5" aria-selected="false" tabindex="-1"><span class="ob-utab__ic"><svg class="icon"><use href="#i-bank"/></svg></span><span>Payment reminders</span></button>
+            <button type="button" class="ob-utab" role="tab" id="ob-utab-6" aria-controls="ob-use-6" aria-selected="false" tabindex="-1"><span class="ob-utab__ic"><svg class="icon"><use href="#i-users"/></svg></span><span>Customer follow-up</span></button>
+          </div>
+          <div class="ob-uses__panels">
+            <article class="ob-use" role="tabpanel" id="ob-use-1" aria-labelledby="ob-utab-1">
+              <div class="ob-use__phone"><span class="ob-use__label"><svg class="icon"><use href="#i-phone-out"/></svg>Telza opens with</span><p>&ldquo;Hi Sam, thanks for your enquiry earlier today. Do you have a minute to talk about what you&rsquo;re looking for?&rdquo;</p><span class="ob-bars ob-use__bars" data-ob-bars="26" aria-hidden="true"></span></div>
+              <div class="ob-use__side"><h3>New lead follow-up</h3><ul class="ob-use__goal"><li>Calls new leads within seconds</li><li>Asks your qualifying questions</li></ul><div class="ob-use__out"><small>Typical outcomes</small><span>Qualified</span><span>Callback requested</span><span>Routed to your team</span></div></div>
+            </article>
+            <article class="ob-use" role="tabpanel" id="ob-use-2" aria-labelledby="ob-utab-2">
+              <div class="ob-use__phone"><span class="ob-use__label"><svg class="icon"><use href="#i-phone-out"/></svg>Telza opens with</span><p>&ldquo;Before I connect you with the team, could I ask you a couple of quick questions?&rdquo;</p><span class="ob-bars ob-use__bars" data-ob-bars="26" aria-hidden="true"></span></div>
+              <div class="ob-use__side"><h3>Lead qualification</h3><ul class="ob-use__goal"><li>Follows your qualification criteria</li><li>Handles common objections</li></ul><div class="ob-use__out"><small>Typical outcomes</small><span>Qualified</span><span>Not a fit right now</span><span>Routed to sales</span></div></div>
+            </article>
+            <article class="ob-use" role="tabpanel" id="ob-use-3" aria-labelledby="ob-utab-3">
+              <div class="ob-use__phone"><span class="ob-use__label"><svg class="icon"><use href="#i-phone-out"/></svg>Telza opens with</span><p>&ldquo;I&rsquo;m calling to confirm your appointment tomorrow at 2 PM. Does that still work for you?&rdquo;</p><span class="ob-bars ob-use__bars" data-ob-bars="26" aria-hidden="true"></span></div>
+              <div class="ob-use__side"><h3>Appointment reminders</h3><ul class="ob-use__goal"><li>Confirms the appointment</li><li>Moves it where your workflow allows</li></ul><div class="ob-use__out"><small>Typical outcomes</small><span>Confirmed</span><span>Rescheduled</span><span>Logged to CRM</span></div></div>
+            </article>
+            <article class="ob-use" role="tabpanel" id="ob-use-4" aria-labelledby="ob-utab-4">
+              <div class="ob-use__phone"><span class="ob-use__label"><svg class="icon"><use href="#i-phone-out"/></svg>Telza opens with</span><p>&ldquo;Your plan is due for renewal next month, and I wanted to check in with you before then.&rdquo;</p><span class="ob-bars ob-use__bars" data-ob-bars="26" aria-hidden="true"></span></div>
+              <div class="ob-use__side"><h3>Renewals</h3><ul class="ob-use__goal"><li>Personalised with plan details from your CRM</li><li>Answers supported questions</li></ul><div class="ob-use__out"><small>Typical outcomes</small><span>Renewal interest noted</span><span>Questions routed to your team</span></div></div>
+            </article>
+            <article class="ob-use" role="tabpanel" id="ob-use-5" aria-labelledby="ob-utab-5">
+              <div class="ob-use__phone"><span class="ob-use__label"><svg class="icon"><use href="#i-phone-out"/></svg>Telza opens with</span><p>&ldquo;This is a quick reminder that your payment is due on the 15th. Is there anything I can help with?&rdquo;</p><span class="ob-bars ob-use__bars" data-ob-bars="26" aria-hidden="true"></span></div>
+              <div class="ob-use__side"><h3>Payment reminders</h3><ul class="ob-use__goal"><li>Delivers the reminder</li><li>Routes payment questions to your team</li></ul><div class="ob-use__out"><small>Typical outcomes</small><span>Reminder delivered</span><span>Routed to your team</span></div></div>
+            </article>
+            <article class="ob-use" role="tabpanel" id="ob-use-6" aria-labelledby="ob-utab-6">
+              <div class="ob-use__phone"><span class="ob-use__label"><svg class="icon"><use href="#i-phone-out"/></svg>Telza opens with</span><p>&ldquo;We&rsquo;re checking in after your recent visit. Is there anything else we can help you with?&rdquo;</p><span class="ob-bars ob-use__bars" data-ob-bars="26" aria-hidden="true"></span></div>
+              <div class="ob-use__side"><h3>Customer follow-up</h3><ul class="ob-use__goal"><li>Follows up with existing customers</li><li>Captures any new requests</li></ul><div class="ob-use__out"><small>Typical outcomes</small><span>Follow-up logged</span><span>Request routed to your team</span></div></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Process: step slider (dark) ============ -->
+    <section class="ob-how" id="how-it-works" aria-labelledby="ob-how-title">
+      <div class="container ob-how__head">
+        <div>
+          <span class="ob-kicker">Step by step</span>
+          <h2 class="ob-h2" id="ob-how-title">From your call list to a live campaign</h2>
+        </div>
+        <div class="ob-how__nav">
+          <button type="button" class="ob-round" data-ob-prev aria-label="Previous step"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg></button>
+          <span class="ob-how__count"><b data-ob-how-count>01</b> / 04</span>
+          <button type="button" class="ob-round" data-ob-next aria-label="Next step"><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="ob-how__viewport" data-ob-slider tabindex="0" aria-roledescription="carousel" aria-label="How an outbound campaign goes live">
+        <div class="ob-how__track" data-ob-track>
+          <article class="ob-slide" data-ob-slide aria-roledescription="slide" aria-label="Step 1 of 4">
+            <span class="ob-slide__num">01</span>
+            <div class="ob-slide__body"><h3>Share your goals and list</h3><p>Tell us who you want to call and what each call should achieve: qualify, confirm, remind or follow up.</p></div>
+            <div class="ob-slide__visual" aria-hidden="true"><span>Who to call</span><span>Campaign goal</span><span>Calling windows</span></div>
+          </article>
+          <article class="ob-slide" data-ob-slide aria-roledescription="slide" aria-label="Step 2 of 4">
+            <span class="ob-slide__num">02</span>
+            <div class="ob-slide__body"><h3>Adapt your script for AI</h3><p>Your existing scripts, qualification criteria and business rules are the starting point, adapted so the agent can handle different answers.</p></div>
+            <div class="ob-slide__visual" aria-hidden="true"><span>Scripts</span><span>Qualification criteria</span><span>Business rules</span></div>
+          </article>
+          <article class="ob-slide" data-ob-slide aria-roledescription="slide" aria-label="Step 3 of 4">
+            <span class="ob-slide__num">03</span>
+            <div class="ob-slide__body"><h3>Connect your systems</h3><p>Telza connects with supported dialers, CRMs, calendars and APIs, so calls go out on your setup and outcomes land where your team works.</p></div>
+            <div class="ob-slide__visual" aria-hidden="true"><span>VICIdial</span><span>Telnyx</span><span>Vonage</span><span>Signalwire</span><span>Bitrix</span><span>Zapier</span><span>Twilio</span></div>
+          </article>
+          <article class="ob-slide" data-ob-slide aria-roledescription="slide" aria-label="Step 4 of 4">
+            <span class="ob-slide__num">04</span>
+            <div class="ob-slide__body"><h3>Launch and review</h3><p>The campaign goes live, every outcome is logged automatically, and conversations that need a person are routed to your team.</p></div>
+            <div class="ob-slide__visual" aria-hidden="true"><span>Campaign live</span><span>Outcomes logged</span><span>Routed to your team</span></div>
+          </article>
+        </div>
+      </div>
+      <div class="ob-how__dots" role="tablist" aria-label="Choose a step">
+        <button type="button" role="tab" aria-selected="true" aria-label="Step 1" data-ob-dot></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Step 2" data-ob-dot></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Step 3" data-ob-dot></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Step 4" data-ob-dot></button>
+      </div>
+    </section>
+
+    <!-- ============ Benefits band ============ -->
+    <section class="ob-benefits" aria-labelledby="ob-benefits-title">
+      <div class="container">
+        <h2 class="sr-only" id="ob-benefits-title">Benefits of Telza Outbound Calling</h2>
+        <div class="ob-benefits__grid">
+          <article class="ob-benefit"><span class="ob-benefit__ic"><svg class="icon"><use href="#i-bolt"/></svg></span><h3>Every lead gets a call</h3><p>No lead waits for someone to free up. Follow-ups happen while interest is still warm.</p></article>
+          <article class="ob-benefit"><span class="ob-benefit__ic"><svg class="icon"><use href="#i-clock"/></svg></span><h3>Time back for your team</h3><p>Manual dialing and repeat calls move to Telza, so your team spends its time on the conversations that need them.</p></article>
+          <article class="ob-benefit"><span class="ob-benefit__ic"><svg class="icon"><use href="#i-mic"/></svg></span><h3>Conversations, not robocalls</h3><p>Natural, human-like voices that respond to what people say and adapt to each conversation.</p></article>
+          <article class="ob-benefit"><span class="ob-benefit__ic"><svg class="icon"><use href="#i-chart"/></svg></span><h3>A clear outcome for every call</h3><p>Every result is logged to your CRM automatically, so you always know where each contact stands.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ (answers as published on the Telza homepage) ============ -->
+    <section class="section ob-faq" id="faq">
+      <div class="container faq">
+        <div class="section-head section-head--left reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2 class="section-title">Questions about Outbound Calling</h2>
+          <p class="section-lead">Something else on your mind? <a href="#cta" class="link">Talk to our team</a>.</p>
+        </div>
+        <div class="accordion accordion--rich reveal" data-delay="1" data-accordion>
+          <div class="acc-item is-open">
+            <button type="button" class="acc-trigger" aria-expanded="true" aria-controls="obfaq-1" id="obfaq-1-btn">Does Telza AI support both inbound and outbound calls?<span class="acc-icon"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button>
+            <div class="acc-panel" id="obfaq-1" role="region" aria-labelledby="obfaq-1-btn"><div>
+              <p>Yes.</p>
+              <p><strong>Outbound AI agents</strong> can contact prospects, follow campaign logic, qualify leads, handle common objections, and route appropriate conversations to your team.</p>
+              <p><strong>Inbound AI agents</strong> can answer callers, collect information, respond to supported inquiries, complete configured workflows, and transfer the conversation when a human is needed.</p>
+            </div></div>
+          </div>
+          <div class="acc-item">
+            <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="obfaq-2" id="obfaq-2-btn">Can Telza work with the systems we already use?<span class="acc-icon"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button>
+            <div class="acc-panel" id="obfaq-2" role="region" aria-labelledby="obfaq-2-btn"><div>
+              <p>Telza can connect with supported CRMs, dialers, calendars, APIs, and other business systems depending on the product and workflow.</p>
+              <p>Supported platforms:<br><strong>VICIdial</strong> · <strong>Telnyx</strong> · <strong>Vonage</strong> · <strong>Signalwire</strong> · <strong>Bitrix</strong> · <strong>Zapier</strong> · <strong>Twilio</strong></p>
+              <p>If your system is not already supported, we can review the integration requirements during the demo.</p>
+            </div></div>
+          </div>
+          <div class="acc-item">
+            <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="obfaq-3" id="obfaq-3-btn">Do we need to change our existing scripts and processes?<span class="acc-icon"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button>
+            <div class="acc-panel" id="obfaq-3" role="region" aria-labelledby="obfaq-3-btn"><div>
+              <p>Not necessarily.</p>
+              <p>Your existing scripts, qualification criteria, business rules, and workflows can be used as the starting point.</p>
+              <p>We then adapt them for AI so the agent can respond to different answers, conditions, objections, and actions instead of simply reading a fixed script line by line.</p>
+            </div></div>
+          </div>
+          <div class="acc-item">
+            <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="obfaq-4" id="obfaq-4-btn">How long does it take to get started?<span class="acc-icon"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button>
+            <div class="acc-panel" id="obfaq-4" role="region" aria-labelledby="obfaq-4-btn"><div>
+              <p>Implementation depends on the product, workflow complexity, integrations, campaign logic, and testing required.</p>
+              <p>During the initial review, we map the workflow first and then give you a realistic implementation plan based on your setup.</p>
+            </div></div>
+          </div>
+          <div class="acc-item">
+            <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="obfaq-5" id="obfaq-5-btn">Can we see Telza AI working before we buy?<span class="acc-icon"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button>
+            <div class="acc-panel" id="obfaq-5" role="region" aria-labelledby="obfaq-5-btn"><div>
+              <p>Yes.</p>
+              <p>You can request a demo based on the product or workflow you are interested in, including <strong>Voice AI</strong>, <strong>Fillo</strong>, <strong>WhatsApp Automation</strong>, and <strong>E-commerce AI</strong>.</p>
+              <p>For Voice AI, we can also provide relevant call examples so you can hear how Telza handles real conversation scenarios.</p>
+              <p class="acc-cta"><a href="#cta" class="btn btn--primary btn--sm">Request a Demo <svg class="icon"><use href="#i-arrow"/></svg></a></p>
+            </div></div>
+          </div>
+          <div class="acc-item">
+            <button type="button" class="acc-trigger" aria-expanded="false" aria-controls="obfaq-6" id="obfaq-6-btn">Does Telza make our business TCPA compliant?<span class="acc-icon"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button>
+            <div class="acc-panel" id="obfaq-6" role="region" aria-labelledby="obfaq-6-btn"><div>
+              <p>No software platform can make a blanket compliance determination for a customer's operation.</p>
+              <p>Telza provides supported controls and workflow tools, while customers remain responsible for understanding and meeting the legal obligations applicable to their campaigns.</p>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA (same component as the homepage's "Get started" CTA; Outbound copy) ============ -->
+    <section class="section section--cta" id="cta">
+      <div class="container">
+        <div class="cta reveal">
+          <div class="cta__grid" aria-hidden="true"></div>
+          <span class="eyebrow">Get started with Outbound Calling</span>
+          <h2>Let Telza make your next round of calls</h2>
+          <p>Book a walkthrough and we'll show you how Telza runs an outbound campaign around your own list, scripts and workflow, with call examples you can hear.</p>
+          <form class="cta-form" data-form="#cta-msg" data-success="Thanks! Our team will email you within one business day." novalidate>
+            <label class="sr-only" for="cta-email">Work email</label>
+            <input type="email" id="cta-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+            <button type="submit" class="btn btn--primary">Book a demo <svg class="icon"><use href="#i-arrow"/></svg></button>
+          </form>
+          <p class="form-msg" id="cta-msg" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer (shared with homepage) ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="logo logo--footer">
+            <span class="logo__crop"><img src="assets/telza-logo.png" alt="Telza AI home" width="362" height="207" loading="lazy"></span>
+          </a>
+          <p>AI voice and WhatsApp agents that answer, call and close, around the clock.</p>
+          <div class="socials">
+            <a href="#" aria-label="Telza on LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+            <a href="#" aria-label="Telza on X"><svg class="icon"><use href="#i-x"/></svg></a>
+            <a href="#" aria-label="Telza on Instagram"><svg class="icon"><use href="#i-instagram"/></svg></a>
+            <a href="#" aria-label="Telza on YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul class="footer__links">
+            <li><a href="ai-voice-agent.html">AI Voice Agents</a></li>
+            <li><a href="index.html#inbound">Inbound Calling</a></li>
+            <li><a href="index.html#outbound">Outbound Calling</a></li>
+            <li><a href="index.html#whatsapp">WhatsApp Automation</a></li>
+            <li><a href="fillo.html">Fillo</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul class="footer__links">
+            <li><a href="index.html#how-it-works">How it works</a></li>
+            <li><a href="index.html#industries">Industries</a></li>
+            <li><a href="index.html#testimonials">Customers</a></li>
+            <li><a href="#cta">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer__links">
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#integrations">Integrations</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#cta">Book a demo</a></li>
+          </ul>
+        </div>
+        <div class="footer__news">
+          <h4>Stay in the loop</h4>
+          <p>Product updates and AI CX insights, once a month.</p>
+          <form class="newsletter" data-form="#news-msg" data-success="You're subscribed. Welcome aboard!" novalidate>
+            <label class="sr-only" for="news-email">Email address</label>
+            <input type="email" id="news-email" name="email" placeholder="Email address" autocomplete="email" required>
+            <button type="submit" class="btn btn--primary" aria-label="Subscribe"><svg class="icon"><use href="#i-arrow"/></svg></button>
+          </form>
+          <p class="form-msg" id="news-msg" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="footer__wordmark" aria-hidden="true">telza</div>
+
+      <div class="footer__bottom">
+        <span>© <span id="year">2026</span> Telza. All rights reserved.</span>
+        <div class="footer__legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="to-top" aria-label="Back to top"><svg class="icon"><use href="#i-arrow"/></svg></button>
+
+</body>
+</html>

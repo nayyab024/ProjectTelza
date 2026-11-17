@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062824"/><stop offset=".55" stop-color="#020c0b"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.25" r=".55"><stop offset="0" stop-color="#14C9B8" stop-opacity=".38"/><stop offset="1" stop-color="#14C9B8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2" cx=".12" cy=".9" r=".45"><stop offset="0" stop-color="#39FF14" stop-opacity=".16"/><stop offset="1" stop-color="#39FF14" stop-opacity="0"/></radialGradient>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14C9B8"/><stop offset="1" stop-color="#39FF14"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12302c"/><stop offset="1" stop-color="#071513"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#fff" fill-opacity=".07"/></pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity=".6"/></filter>
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#dots)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <rect width="1200" height="750" fill="url(#glow2)"/>
+  <rect x="110" y="110" width="560" height="530" rx="26" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="140" cy="144" r="6" fill="#39FF14"/>
+  <text x="158" y="151" font-size="20" font-weight="600" fill="#fff">Order #4821</text>
+  <text x="642" y="151" text-anchor="end" font-size="15" font-weight="600" letter-spacing="2" fill="#fff" fill-opacity=".45">ILLUSTRATIVE</text>
+  <line x1="110" y1="176" x2="670" y2="176" stroke="#fff" stroke-opacity=".1"/>
+  <line x1="170" y1="252" x2="170" y2="300" stroke="#39FF14" stroke-opacity=".8" stroke-width="3"/>
+  <circle cx="170" cy="236" r="16" fill="url(#grad)"/><path d="M162 236l5 5 10-10" fill="none" stroke="#04110f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="206" y="243" font-size="21" font-weight="600" fill="#fff" fill-opacity="1">Order placed</text>
+  <line x1="170" y1="332" x2="170" y2="380" stroke="#39FF14" stroke-opacity=".8" stroke-width="3"/>
+  <circle cx="170" cy="316" r="16" fill="url(#grad)"/><path d="M162 316l5 5 10-10" fill="none" stroke="#04110f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="206" y="323" font-size="21" font-weight="600" fill="#fff" fill-opacity="1">Packed</text>
+  <line x1="170" y1="412" x2="170" y2="460" stroke="#39FF14" stroke-opacity=".8" stroke-width="3"/>
+  <circle cx="170" cy="396" r="16" fill="url(#grad)"/><path d="M162 396l5 5 10-10" fill="none" stroke="#04110f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="206" y="403" font-size="21" font-weight="600" fill="#fff" fill-opacity="1">Shipped</text>
+  <line x1="170" y1="492" x2="170" y2="540" stroke="#fff" stroke-opacity=".2" stroke-width="3"/>
+  <circle cx="170" cy="476" r="15" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2.5"/>
+  <text x="206" y="483" font-size="21" font-weight="600" fill="#fff" fill-opacity=".5">Out for delivery</text>
+  <circle cx="170" cy="556" r="15" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2.5"/>
+  <text x="206" y="563" font-size="21" font-weight="600" fill="#fff" fill-opacity=".5">Delivered</text>
+  <rect x="330" y="376" width="150" height="40" rx="20" fill="#14C9B8" fill-opacity=".16" stroke="#14C9B8" stroke-opacity=".45"/>
+  <text x="405.0" y="402.5" text-anchor="middle" font-size="17" font-weight="600" fill="#7ff2e6">Arrives Thu</text>
+  <rect x="620" y="160" width="470" height="430" rx="26" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="674" cy="216" r="26" fill="url(#grad)"/>
+  <g transform="translate(661.4 203.4) scale(1.05)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></g>
+  <text x="714" y="211" font-size="19" font-weight="600" fill="#fff">Store assistant</text>
+  <text x="714" y="236" font-size="15" fill="#39FF14">online 24/7</text>
+  <rect x="760" y="274" width="300" height="56" rx="20" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".14"/>
+  <text x="782" y="312" font-size="21" fill="#fff" fill-opacity=".92">Where is my order?</text>
+  <rect x="650" y="352" width="410" height="86" rx="20" fill="#14C9B8" fill-opacity=".16" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="672" y="390" font-size="21" fill="#fff" fill-opacity=".92">It shipped yesterday and arrives</text>
+  <text x="672" y="420" font-size="21" fill="#fff" fill-opacity=".92">on Thursday. Here is your link.</text>
+  <rect x="730" y="460" width="330" height="56" rx="20" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".14"/>
+  <text x="752" y="498" font-size="21" fill="#fff" fill-opacity=".92">Do you have it in a size 8?</text>
+
+</svg>

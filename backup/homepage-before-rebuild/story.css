@@ -1,0 +1,245 @@
+/* ==========================================================================
+   Telza: scroll story (homepage hero → AI Solutions)
+   The AI voice orb (canvas, story.js) and the hand-off between the two sections.
+   Desktop + motion allowed: html.story-on, the orb lives in a fixed .orb-stage.
+   Otherwise the orb simply sits in the hero (.hero-orb-anchor).
+   ========================================================================== */
+
+/* Orb anchor in the hero (also the no-JS / mobile fallback position) */
+.hero-orb-anchor {
+  position: relative;
+  width: min(100%, 540px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.hero-orb-anchor::before { /* soft glow that shows even before the canvas draws */
+  content: "";
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 201, 184, .22), rgba(57, 255, 20, .06) 50%, transparent 70%);
+  filter: blur(18px);
+}
+.orb3d { position: relative; width: 600px; height: 600px; }
+.hero-orb-anchor .orb3d { position: absolute; inset: 0; width: 100%; height: 100%; }
+.orb3d__canvas { display: block; width: 100%; height: 100%; }
+
+/* Floating cards around the orb (same chips as before, now grouped) */
+.hero-floats { position: absolute; inset: 0; z-index: 2; pointer-events: none; transform-origin: 50% 50%; }
+
+/* Landing slot in AI Solutions: only takes space while the story runs */
+.sol-orb-slot { display: none; }
+.story-on .sol-orb-slot { display: block; height: min(44vh, 380px); margin: -24px auto 28px; }
+
+/* Story mode */
+.story-on .hero { z-index: 2; } /* hero content & cards float in front of the orb */
+/* Horizontal overflow guard. `clip` (unlike `hidden`) creates no scroll container, so sticky/pinned
+   sections and window scrolling are unaffected. Browsers without `clip` keep body's overflow-x: hidden. */
+html, body { overflow-x: clip; }
+
+.orb-stage { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+.orb-travel, .orb-pos, .orb-scale { position: absolute; left: 0; top: 0; }
+.orb-pos { width: 600px; height: 600px; will-change: transform; }
+.orb-scale { inset: 0; position: absolute; will-change: transform; }
+.orb-stage__glow {
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 201, 184, .2) 0%, rgba(20, 201, 184, .08) 32%, rgba(57, 255, 20, .03) 50%, transparent 66%);
+  opacity: 0;
+}
+.orb-stage .orb3d { position: absolute; inset: 0; }
+
+/* ==========================================================================
+   AI core chapter (#ai-core): parent scroll container + sticky stage
+   ========================================================================== */
+.orb-shift, .orb-exit, .orb-fx, .orb-fx2 { position: absolute; left: 0; top: 0; }
+.orb-fx, .orb-fx2 { inset: 0; will-change: transform, opacity; }
+.story-on #solutions { z-index: 2; } /* solution cards glide over the softened orb */
+
+/* Base (static) layout: phones, tablets, reduced motion, no GSAP */
+.pstory { position: relative; padding: 110px 0; overflow: clip; }
+.pstory__layers { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.pl { position: absolute; left: -10%; right: -10%; will-change: transform; }
+.pl--grid {
+  top: -10%; bottom: -30%;
+  background-image: linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 20%, transparent 75%);
+}
+.pl--glow {
+  top: 0; bottom: -40%;
+  background:
+    radial-gradient(30% 34% at 22% 40%, rgba(20, 201, 184, .16), transparent 70%),
+    radial-gradient(26% 30% at 82% 70%, rgba(57, 255, 20, .08), transparent 70%);
+}
+.pl--dots {
+  top: 0; bottom: -60%;
+  background-image: radial-gradient(rgba(57, 255, 20, .5) 1px, transparent 1.6px), radial-gradient(rgba(20, 201, 184, .45) 1px, transparent 1.6px);
+  background-size: 190px 170px, 260px 230px;
+  background-position: 0 0, 90px 60px;
+  opacity: .35;
+}
+.pstory__grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.pstory__orbspot { display: none; }
+.pstory__content { grid-column: 1 / -1; max-width: 760px; }
+.pstory__title { margin-top: 4px; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: -.03em; line-height: 1.1; }
+.pstory__list { display: grid; gap: 4px; margin-top: 30px; counter-reset: none; }
+.pitem { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.pitem__num { padding-top: 5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; font-weight: 600; color: var(--dim); }
+.pitem strong { display: block; font-family: var(--font-head); font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+.pitem p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+.pstory__ui { position: relative; z-index: 2; width: min(620px, 100%); margin: 56px auto 0; }
+
+/* Floating AI interface */
+.pstory__ui {
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: linear-gradient(180deg, rgba(14, 24, 26, .5), rgba(6, 11, 12, .62));
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .9), 0 0 120px -40px rgba(20, 201, 184, .55), inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+.pui__head { display: flex; align-items: center; gap: 12px; padding: 2px 4px 14px; border-bottom: 1px solid var(--border); }
+.pui__mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: #061011; border: 1px solid rgba(20, 201, 184, .45); box-shadow: 0 0 22px rgba(20, 201, 184, .4); }
+.pui__mark img { width: 24px; height: 24px; }
+.pui__title { flex: 1; }
+.pui__title strong { display: block; font-size: 15px; }
+.pui__title small { display: block; font-size: 12px; color: var(--dim); }
+.pui__live { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green); }
+.pui__live i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 1.6s infinite; }
+.pui__rows { display: grid; gap: 8px; margin-top: 14px; }
+.pui__rows li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255, 255, 255, .03); }
+.pui__ic { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--grad-soft); border: 1px solid rgba(20, 201, 184, .25); color: var(--teal); }
+.pui__ic .icon { width: 16px; height: 16px; }
+.pui__rows b { display: block; font-size: 13.5px; font-weight: 600; }
+.pui__rows small { display: block; font-size: 11.5px; color: var(--dim); }
+.pui__rows em { padding: 3px 9px; border-radius: 999px; font-size: 11px; font-style: normal; font-weight: 600; }
+.pui__rows em.is-ok { background: rgba(57, 255, 20, .1); color: var(--green); }
+.pui__rows em.is-live { background: rgba(20, 201, 184, .14); color: var(--teal); }
+.pui__rows em.is-run { background: rgba(255, 255, 255, .07); color: var(--muted); }
+
+/* Story mode: tall parent + sticky stage */
+.story-on .pstory { height: 430vh; padding: 0; z-index: 2; overflow: visible; }
+.story-on .pstory__stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.story-on .pstory__grid { height: 100%; padding-top: var(--header-h); }
+.story-on .pstory__orbspot { display: block; height: 60%; }
+.story-on .pstory__content { grid-column: 2; max-width: 520px; }
+.story-on .pstory__list { gap: 0; margin-top: 22px; }
+.story-on .pitem { padding: 9px 0; transition: border-color .45s; }
+.story-on .pitem > * { opacity: .38; transition: opacity .45s; } /* dim inactive rows (GSAP owns the row's own opacity) */
+.story-on .pitem.is-past > * { opacity: .62; }
+.story-on .pitem.is-active > * { opacity: 1; }
+.story-on .pitem strong { font-size: 19px; transition: color .45s, transform .5s var(--ease); transform-origin: left center; }
+.story-on .pitem p { max-height: 0; margin-top: 0; overflow: hidden; opacity: 0; transition: max-height .55s var(--ease), opacity .45s, margin .45s; }
+.story-on .pitem.is-active { border-color: rgba(20, 201, 184, .4); }
+.story-on .pitem.is-active strong { color: var(--green); transform: translateX(6px); }
+.story-on .pitem.is-active .pitem__num { color: var(--teal); }
+.story-on .pitem.is-active p { max-height: 80px; margin-top: 6px; opacity: 1; }
+.story-on .pstory__ui { position: absolute; left: 50%; top: 55%; width: min(540px, 90%); margin: 0; z-index: 3; }
+@media (max-height: 760px) {
+  .story-on .pitem { padding: 6px 0; }
+  .story-on .pitem strong { font-size: 17px; }
+  .story-on .pstory__title { font-size: clamp(26px, 2.8vw, 36px); }
+  .story-on .pui__rows li { padding: 7px 10px; }
+}
+@media (max-width: 600px) {
+  .pstory { padding: 80px 0; }
+  .pitem strong { font-size: 19px; }
+}
+
+/* ==========================================================================
+   Editorial typography (story.js → initTypography)
+   ========================================================================== */
+/* masked words: each word rises out of its own clipping box */
+.ed .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 .05em .16em; margin: 0 -.05em -.16em; }
+.ed .w > span { display: inline-block; transform-origin: 0% 100%; }
+/* highlighted keywords in headings (AI, Automation, Voice, Intelligence) */
+.kw, .split-words .w > span.kw {
+  background: linear-gradient(100deg, var(--teal) 10%, var(--green) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* oversized background typography: faint outline, drifts slowly on scroll */
+.bgtype {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 0;
+  font-family: var(--font-head);
+  font-size: clamp(110px, 16vw, 290px);
+  font-weight: 700;
+  line-height: .8;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, .06);
+  background: linear-gradient(90deg, rgba(20, 201, 184, .05), rgba(57, 255, 20, .02) 60%, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+.bgtype-clip { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.bgtype--hero { top: auto; bottom: 6%; left: 4%; }
+.bgtype--core { top: auto; bottom: 5%; left: 8%; }
+.bgtype--ps { top: auto; bottom: 4%; left: 10%; font-size: clamp(100px, 13vw, 240px); }
+.ps__pin > .container, .ps__pin > .ps__viewport { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  .bgtype { -webkit-text-stroke-color: rgba(255, 255, 255, .05); }
+}
+
+/* ==========================================================================
+   Depth & atmosphere (story.js → initDepth). Homepage only, motion allowed.
+   Layers, far → near: section-tinted glows · AI particles · perspective orbit rings.
+   Page content scrolls over them; selected blocks get scroll-driven 3D depth.
+   ========================================================================== */
+.atmos { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; } /* under all page content */
+.atmos__glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80vmax;
+  height: 80vmax;
+  margin: -40vmax 0 0 -40vmax; /* centred on its translate point */
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.atmos__glow--teal { background: radial-gradient(closest-side, rgba(20, 201, 184, .16), rgba(20, 201, 184, .05) 55%, transparent); }
+.atmos__glow--green { background: radial-gradient(closest-side, rgba(57, 255, 20, .09), rgba(57, 255, 20, .025) 55%, transparent); }
+.atmos__glow--deep { background: radial-gradient(closest-side, rgba(10, 90, 84, .22), rgba(10, 90, 84, .06) 60%, transparent); }
+.atmos__particles { position: absolute; inset: 0; width: 100%; height: 100%; }
+.atmos__rings { position: absolute; left: 50%; top: 50%; width: 0; height: 0; perspective: 1200px; opacity: 0; will-change: transform, opacity; }
+.atmos__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 201, 184, .14);
+  transform-style: preserve-3d;
+  animation: atmosRing 90s linear infinite;
+}
+.atmos__ring--1 { width: 120vmin; height: 120vmin; margin: -60vmin 0 0 -60vmin; --tilt: 74deg; }
+.atmos__ring--2 { width: 84vmin; height: 84vmin; margin: -42vmin 0 0 -42vmin; --tilt: 68deg; border-color: rgba(57, 255, 20, .1); border-style: dashed; animation-duration: 120s; animation-direction: reverse; }
+@keyframes atmosRing { from { transform: rotateX(var(--tilt)) rotateZ(0deg); } to { transform: rotateX(var(--tilt)) rotateZ(360deg); } }
+
+@media (max-width: 767px) { .atmos__rings { display: none; } } /* phones: lightest atmosphere */
+
+/* let the atmosphere show through the darker bands (visually still near-black) */
+.depth-on .section--alt { background: linear-gradient(180deg, rgba(0, 0, 0, .55), rgba(5, 9, 9, .72) 18%, rgba(5, 9, 9, .72) 82%, rgba(0, 0, 0, .55)); }
+
+/* Scroll-driven depth: individual transform properties, so existing transform-based
+   reveals, tilts and hovers keep working underneath */
+.depth-on .split { perspective: 1600px; }
+.depth-on #features > .container, .depth-on .section--cta .container { perspective: 1800px; }
+.dz {
+  translate: 0 var(--dy, 0px);
+  rotate: x var(--drx, 0deg);
+  scale: var(--ds, 1);
+}
+.dz--y { rotate: none; scale: none; } /* parallax only */

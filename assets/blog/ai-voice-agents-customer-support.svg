@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062824"/><stop offset=".55" stop-color="#020c0b"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.22" r=".55"><stop offset="0" stop-color="#14C9B8" stop-opacity=".38"/><stop offset="1" stop-color="#14C9B8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2" cx=".12" cy=".9" r=".45"><stop offset="0" stop-color="#39FF14" stop-opacity=".16"/><stop offset="1" stop-color="#39FF14" stop-opacity="0"/></radialGradient>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14C9B8"/><stop offset="1" stop-color="#39FF14"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12302c"/><stop offset="1" stop-color="#071513"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#fff" fill-opacity=".07"/></pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity=".6"/></filter>
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#dots)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <rect width="1200" height="750" fill="url(#glow2)"/>
+  <rect x="150" y="110" width="900" height="530" rx="26" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="180" cy="144" r="6" fill="#39FF14"/>
+  <text x="198" y="151" font-size="20" font-weight="600" fill="#fff">Incoming call · AI voice agent</text>
+  <text x="1022" y="151" text-anchor="end" font-size="15" font-weight="600" letter-spacing="2" fill="#fff" fill-opacity=".45">LIVE</text>
+  <line x1="150" y1="176" x2="1050" y2="176" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="240" cy="260" r="46" fill="url(#grad)"/>
+  <g transform="translate(220.8 240.8) scale(1.6)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></g>
+  <text x="306" y="252" font-size="24" font-weight="600" fill="#fff">Customer support line</text>
+  <text x="306" y="284" font-size="18" fill="#fff" fill-opacity=".55">Answered on the first ring</text>
+  <rect x="660.0" y="256.3" width="4.3" height="11.3" rx="3" fill="url(#grad)"/>
+  <rect x="667.9" y="252.5" width="4.3" height="18.9" rx="3" fill="url(#grad)"/>
+  <rect x="675.7" y="252.6" width="4.3" height="18.8" rx="3" fill="url(#grad)"/>
+  <rect x="683.6" y="247.1" width="4.3" height="29.9" rx="3" fill="url(#grad)"/>
+  <rect x="691.4" y="247.5" width="4.3" height="29.1" rx="3" fill="url(#grad)"/>
+  <rect x="699.3" y="242.8" width="4.3" height="38.4" rx="3" fill="url(#grad)"/>
+  <rect x="707.1" y="241.4" width="4.3" height="41.2" rx="3" fill="url(#grad)"/>
+  <rect x="715.0" y="240.2" width="4.3" height="43.6" rx="3" fill="url(#grad)"/>
+  <rect x="722.9" y="235.1" width="4.3" height="53.8" rx="3" fill="url(#grad)"/>
+  <rect x="730.7" y="239.6" width="4.3" height="44.9" rx="3" fill="url(#grad)"/>
+  <rect x="738.6" y="229.3" width="4.3" height="65.4" rx="3" fill="url(#grad)"/>
+  <rect x="746.4" y="240.9" width="4.3" height="42.3" rx="3" fill="url(#grad)"/>
+  <rect x="754.3" y="224.8" width="4.3" height="74.4" rx="3" fill="url(#grad)"/>
+  <rect x="762.1" y="239.7" width="4.3" height="44.5" rx="3" fill="url(#grad)"/>
+  <rect x="770.0" y="222.2" width="4.3" height="79.6" rx="3" fill="url(#grad)"/>
+  <rect x="777.9" y="233.3" width="4.3" height="57.5" rx="3" fill="url(#grad)"/>
+  <rect x="785.7" y="221.8" width="4.3" height="80.5" rx="3" fill="url(#grad)"/>
+  <rect x="793.6" y="227.2" width="4.3" height="69.7" rx="3" fill="url(#grad)"/>
+  <rect x="801.4" y="223.6" width="4.3" height="76.9" rx="3" fill="url(#grad)"/>
+  <rect x="809.3" y="222.2" width="4.3" height="79.6" rx="3" fill="url(#grad)"/>
+  <rect x="817.1" y="227.4" width="4.3" height="69.2" rx="3" fill="url(#grad)"/>
+  <rect x="825.0" y="219.0" width="4.3" height="86.0" rx="3" fill="url(#grad)"/>
+  <rect x="832.9" y="232.7" width="4.3" height="58.7" rx="3" fill="url(#grad)"/>
+  <rect x="840.7" y="218.0" width="4.3" height="88.0" rx="3" fill="url(#grad)"/>
+  <rect x="848.6" y="238.7" width="4.3" height="46.5" rx="3" fill="url(#grad)"/>
+  <rect x="856.4" y="219.3" width="4.3" height="85.3" rx="3" fill="url(#grad)"/>
+  <rect x="864.3" y="236.1" width="4.3" height="51.7" rx="3" fill="url(#grad)"/>
+  <rect x="872.1" y="222.8" width="4.3" height="78.4" rx="3" fill="url(#grad)"/>
+  <rect x="880.0" y="233.2" width="4.3" height="57.6" rx="3" fill="url(#grad)"/>
+  <rect x="887.9" y="228.0" width="4.3" height="68.1" rx="3" fill="url(#grad)"/>
+  <rect x="895.7" y="232.2" width="4.3" height="59.6" rx="3" fill="url(#grad)"/>
+  <rect x="903.6" y="234.2" width="4.3" height="55.7" rx="3" fill="url(#grad)"/>
+  <rect x="911.4" y="233.2" width="4.3" height="57.5" rx="3" fill="url(#grad)"/>
+  <rect x="919.3" y="240.6" width="4.3" height="42.7" rx="3" fill="url(#grad)"/>
+  <rect x="927.1" y="236.3" width="4.3" height="51.4" rx="3" fill="url(#grad)"/>
+  <rect x="935.0" y="246.6" width="4.3" height="30.7" rx="3" fill="url(#grad)"/>
+  <rect x="942.9" y="241.0" width="4.3" height="42.0" rx="3" fill="url(#grad)"/>
+  <rect x="950.7" y="250.6" width="4.3" height="22.9" rx="3" fill="url(#grad)"/>
+  <rect x="958.6" y="246.8" width="4.3" height="30.5" rx="3" fill="url(#grad)"/>
+  <rect x="966.4" y="252.3" width="4.3" height="19.3" rx="3" fill="url(#grad)"/>
+  <rect x="974.3" y="252.8" width="4.3" height="18.5" rx="3" fill="url(#grad)"/>
+  <rect x="982.1" y="255.9" width="4.3" height="12.3" rx="3" fill="url(#grad)"/>
+  <rect x="194" y="340" width="470" height="56" rx="20" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".14"/>
+  <text x="216" y="378" font-size="21" fill="#fff" fill-opacity=".92">Hi, I need to change my delivery address.</text>
+  <rect x="486" y="430" width="520" height="86" rx="20" fill="#14C9B8" fill-opacity=".16" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="508" y="468" font-size="21" fill="#fff" fill-opacity=".92">Of course. I can update that for you now.</text>
+  <text x="508" y="498" font-size="21" fill="#fff" fill-opacity=".92">What is the new address?</text>
+  <rect x="194" y="560" width="380" height="40" rx="20" fill="url(#grad)"/>
+  <text x="384.0" y="586.5" text-anchor="middle" font-size="19" font-weight="600" fill="#04110f">✓  Request resolved · summary sent</text>
+  <rect x="800" y="560" width="206" height="40" rx="20" fill="#14C9B8" fill-opacity=".16" stroke="#14C9B8" stroke-opacity=".45"/>
+  <text x="903.0" y="586.5" text-anchor="middle" font-size="19" font-weight="600" fill="#7ff2e6">Handoff ready</text>
+
+</svg>

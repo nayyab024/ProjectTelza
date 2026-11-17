@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#062824"/><stop offset=".55" stop-color="#020c0b"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx="0.35" cy="0.3" r=".55"><stop offset="0" stop-color="#14C9B8" stop-opacity=".38"/><stop offset="1" stop-color="#14C9B8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow2" cx=".12" cy=".9" r=".45"><stop offset="0" stop-color="#39FF14" stop-opacity=".16"/><stop offset="1" stop-color="#39FF14" stop-opacity="0"/></radialGradient>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14C9B8"/><stop offset="1" stop-color="#39FF14"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12302c"/><stop offset="1" stop-color="#071513"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#fff" fill-opacity=".07"/></pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#000" flood-opacity=".6"/></filter>
+    <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#dots)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <rect width="1200" height="750" fill="url(#glow2)"/>
+  <rect x="140" y="80" width="340" height="600" rx="48" fill="#06110f" stroke="#fff" stroke-opacity=".16" filter="url(#sh)"/>
+  <rect x="255" y="98" width="110" height="24" rx="12" fill="#000"/>
+  <rect x="156" y="136" width="308" height="64" rx="16" fill="#fff" fill-opacity=".05"/>
+  <circle cx="192" cy="168" r="20" fill="url(#grad)"/>
+  <g transform="translate(180 156) scale(1)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></g>
+  <text x="222" y="163" font-size="17" font-weight="600" fill="#fff">Delivery updates</text>
+  <text x="222" y="185" font-size="14" fill="#39FF14">automated · online</text>
+  <rect x="156" y="214" width="290" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="172" y="246" font-size="16.5" fill="#fff" fill-opacity=".92">Your parcel is out for</text>
+  <text x="172" y="272" font-size="16.5" fill="#fff" fill-opacity=".92">delivery, arriving 2 to 4pm.</text>
+  <rect x="156" y="304" width="290" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="172" y="336" font-size="16.5" fill="#fff" fill-opacity=".92">Reply 1 to keep this slot</text>
+  <text x="172" y="362" font-size="16.5" fill="#fff" fill-opacity=".92">or 2 to choose another day.</text>
+  <rect x="386" y="394" width="60" height="46" rx="16" fill="#fff" fill-opacity=".09"/>
+  <text x="402" y="426" font-size="16.5" fill="#fff" fill-opacity=".92">2</text>
+  <rect x="156" y="448" width="290" height="72" rx="16" fill="#14C9B8" fill-opacity=".18" stroke="#14C9B8" stroke-opacity=".4"/>
+  <text x="172" y="480" font-size="16.5" fill="#fff" fill-opacity=".92">Done! Your delivery is now</text>
+  <text x="172" y="506" font-size="16.5" fill="#fff" fill-opacity=".92">booked for Thursday morning.</text>
+  <rect x="560" y="140" width="540" height="470" rx="26" fill="url(#panel)" stroke="#fff" stroke-opacity=".12" filter="url(#sh)"/>
+  <circle cx="602" cy="184" r="6" fill="#39FF14"/><text x="620" y="191" font-size="20" font-weight="600" fill="#fff">Today's deliveries</text>
+  <rect x="590" y="230" width="480" height="70" rx="16" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="626" cy="265" r="18" fill="url(#grad)"/>
+  <g transform="translate(617.0 256.0) scale(0.75)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/></g>
+  <text x="660" y="272" font-size="18" font-weight="600" fill="#fff">Out for delivery</text>
+  <rect x="930" y="249" width="120" height="32" rx="16" fill="#14C9B8" fill-opacity=".18"/><text x="990" y="271" text-anchor="middle" font-size="14" font-weight="600" fill="#7ff2e6">Updated</text>
+  <rect x="590" y="318" width="480" height="70" rx="16" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="626" cy="353" r="18" fill="url(#grad)"/>
+  <g transform="translate(617.0 344.0) scale(0.75)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM16 2v4M8 2v4M3 10h18"/></g>
+  <text x="660" y="360" font-size="18" font-weight="600" fill="#fff">Rescheduled by customer</text>
+  <rect x="930" y="337" width="120" height="32" rx="16" fill="#14C9B8" fill-opacity=".18"/><text x="990" y="359" text-anchor="middle" font-size="14" font-weight="600" fill="#7ff2e6">Thursday</text>
+  <rect x="590" y="406" width="480" height="70" rx="16" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="626" cy="441" r="18" fill="url(#grad)"/>
+  <g transform="translate(617.0 432.0) scale(0.75)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></g>
+  <text x="660" y="448" font-size="18" font-weight="600" fill="#fff">Delay alert sent</text>
+  <rect x="930" y="425" width="120" height="32" rx="16" fill="#14C9B8" fill-opacity=".18"/><text x="990" y="447" text-anchor="middle" font-size="14" font-weight="600" fill="#7ff2e6">Notified</text>
+  <rect x="590" y="494" width="480" height="70" rx="16" fill="#fff" fill-opacity=".05" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="626" cy="529" r="18" fill="url(#grad)"/>
+  <g transform="translate(617.0 520.0) scale(0.75)" fill="none" stroke="#04110f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></g>
+  <text x="660" y="536" font-size="18" font-weight="600" fill="#fff">Delivered</text>
+  <rect x="930" y="513" width="120" height="32" rx="16" fill="url(#grad)"/><text x="990" y="535" text-anchor="middle" font-size="14" font-weight="600" fill="#04110f">Confirmed</text>
+
+</svg>
